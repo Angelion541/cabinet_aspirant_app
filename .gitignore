@@ -5,3 +5,5 @@ node_modules
 coverage
 
 temp
+
+docker-compose.yml
