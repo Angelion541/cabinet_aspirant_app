@@ -1,0 +1,41 @@
+@startuml name use-case diagram
+
+actor "Аспірант" as PhDStudent
+actor "Деканат" as DeanOffice
+
+(Авторизація аспіранта) as Login_PhDStudent
+(Авторизація деканату) as Login_DeanOffice
+(Реєстрація) as Register
+
+(Перегляд розкладу аспіранта) as ViewSchedule
+(Перегляд розкладу групи) as ViewScheduleDeanery
+(Додавання занять до розкладу) as AddScheduleEntry
+(Додавання групи) as AddGroup
+
+(Перегляд завдань) as ViewTasks
+(Перегляд завдань) as ViewTasksDeanery
+(Додавання завдань) as AddTask
+(Позначення завдання виконаним) as MarkCompleted
+(Додавання коментаря та файлу звіту) as AddCommentFile
+
+PhDStudent --> Login_PhDStudent
+PhDStudent --> Register
+
+DeanOffice --> Login_DeanOffice
+
+Login_PhDStudent .down.> ViewSchedule : <<include>>
+
+Login_PhDStudent --> ViewTasks
+ViewTasks .down.> AddTask : <<include>>
+ViewTasks .down.> AddCommentFile : <<include>>
+AddCommentFile .down.> MarkCompleted : <<include>>
+
+Login_DeanOffice .down.> ViewScheduleDeanery : <<include>>
+ViewScheduleDeanery .down.> AddGroup : <<include>>
+ViewScheduleDeanery .down.> AddScheduleEntry : <<include>>
+
+Login_DeanOffice .down.> ViewTasksDeanery : <<include>>
+ViewTasksDeanery .down.> AddTask : <<include>>
+ViewTasksDeanery .down.> MarkCompleted : <<include>>
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+node "Користувач" {
+  [Браузер]
+}
+
+package "Frontend (React)" {
+  component "App" 
+  component "Cabinet"
+  component "AuthService"
+  component "Student"
+  component "Deanery"
+}
+
+package "Backend (Express)" {
+  component "API" 
+  component "AuthController"
+  component "DBService"
+}
+
+[Браузер] --> "App"
+"App" --> "Cabinet"
+"Cabinet" --> "Student"
+"Cabinet" --> "Deanery"
+"App" --> "AuthService"
+"AuthService" --> "API" : "POST /login"
+"API" --> "AuthController"
+"AuthController" --> "DBService" : "find user"
+@enduml
